@@ -587,14 +587,14 @@ class LlamaParseProvider(DocumentProvider):
         
         # Parse the document with timeout to prevent hanging
         try:
-            # Set a reasonable timeout (60 seconds for API call)
+            # Set a reasonable timeout (300 seconds for API call)
             documents = await asyncio.wait_for(
                 self.parser.aload_data(file_path_str),
-                timeout=60.0
+                timeout=300.0
             )
             logger.info(f"LlamaParse API call completed. Received {len(documents) if documents else 0} document(s)")
         except asyncio.TimeoutError:
-            logger.error(f"LlamaParse API call timed out after 60 seconds for {doc_path.name}")
+            logger.error(f"LlamaParse API call timed out after 300 seconds for {doc_path.name}")
             raise TimeoutError("LlamaParse API call timed out. Please try again or use a simpler document.")
         except Exception as e:
             logger.error(f"LlamaParse API call failed: {e}")

@@ -147,7 +147,7 @@ class PerformanceConfig(BaseModel):
     cache_enabled: bool = Field(default=True)
     cache_ttl: int = Field(default=3600, ge=0)
     max_concurrent_requests: int = Field(default=10, ge=1)
-    timeout_seconds: int = Field(default=120, ge=1)
+    timeout_seconds: int = Field(default=300, ge=1)
 
 
 class DocsrayConfig(BaseModel):
@@ -230,7 +230,7 @@ class DocsrayConfig(BaseModel):
                 "cache_enabled": os.getenv("DOCSRAY_CACHE_ENABLED", "true").lower() == "true",
                 "cache_ttl": int(os.getenv("DOCSRAY_CACHE_TTL", "3600")),
                 "max_concurrent_requests": int(os.getenv("DOCSRAY_MAX_CONCURRENT_REQUESTS", "10")),
-                "timeout_seconds": int(os.getenv("DOCSRAY_TIMEOUT_SECONDS", "120")),
+                "timeout_seconds": int(os.getenv("DOCSRAY_TIMEOUT_SECONDS", "300")),
             },
             "log_level": os.getenv("DOCSRAY_LOG_LEVEL", "INFO"),
         }
